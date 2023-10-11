@@ -1,22 +1,33 @@
-﻿using todo_backend.Models;
+﻿using todo_backend.Data;
+using todo_backend.Models;
 
 namespace todo_backend.Services.Todos
 {
     public class TodosService : ITodosService
     {
+        private readonly TodosDbContext _todosDbContext;
+        public TodosService (TodosDbContext todoDbContext)
+        {
+            _todosDbContext = todoDbContext; 
+        }
+
         public bool AddTodo(Todo todo)
         {
             throw new NotImplementedException();
         }
 
-        public bool DeleteTodo(Todo todo)
+        public bool DeleteTodo(int id)
         {
-            throw new NotImplementedException();
+            Todo todo = _todosDbContext.Todos.Find(id);
+            _todosDbContext.Todos.Remove(todo);
+            _todosDbContext.SaveChanges();
+
+            return true;
         }
 
         public List<Todo> GetTodos()
         {
-            return new List<Todo>();
+            return _todosDbContext.Todos.OrderByDescending(x => x.Id).ToList();
         }
 
         public bool UpdateTodo(Todo todo)
