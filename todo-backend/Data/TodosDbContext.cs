@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using todo_backend.Configuration;
+using todo_backend.Seeders;
 
 namespace todo_backend.Data
 {
@@ -10,6 +11,7 @@ namespace todo_backend.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new TodoConfiguration());
+            modelBuilder.Seed();
         }
     }
 }

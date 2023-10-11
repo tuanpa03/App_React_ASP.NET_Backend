@@ -11,7 +11,7 @@ using todo_backend.Data;
 namespace todo_backend.Migrations
 {
     [DbContext(typeof(TodosDbContext))]
-    [Migration("20231010154112_init-todos")]
+    [Migration("20231011054721_init-todos")]
     partial class inittodos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,6 +43,26 @@ namespace todo_backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("todos", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsComplete = false,
+                            Name = "Nhiệm vụ 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsComplete = false,
+                            Name = "Nhiệm vụ 2"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IsComplete = false,
+                            Name = "Nhiệm vụ 3"
+                        });
                 });
 #pragma warning restore 612, 618
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using todo_backend.Services.Todos;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +9,17 @@ namespace todo_backend.Controllers
     [ApiController]
     public class TodosController : ControllerBase
     {
+        private readonly ITodosService _todoservices;
+        public TodosController(ITodosService todoservices)
+        {
+            _todoservices = todoservices;
+        }
+
         // GET: api/<TodosController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(_todoservices.GetTodos());
         }
 
         // GET api/<TodosController>/5

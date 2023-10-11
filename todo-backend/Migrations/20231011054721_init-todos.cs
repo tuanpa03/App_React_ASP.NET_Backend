@@ -21,6 +21,21 @@ namespace todo_backend.Migrations
                 {
                     table.PrimaryKey("PK_todos", x => x.Id);
                 });
+
+            migrationBuilder.InsertData(
+                table: "todos",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "Nhiệm vụ 1" });
+
+            migrationBuilder.InsertData(
+                table: "todos",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 2, "Nhiệm vụ 2" });
+
+            migrationBuilder.InsertData(
+                table: "todos",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 3, "Nhiệm vụ 3" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
